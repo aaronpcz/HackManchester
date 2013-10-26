@@ -32,21 +32,16 @@ function rec2(data) {
 	}
 	else
 	{
-	var i = 1;
+	
 	$.each( data.matches, function(key, value){
-		if(i > 3)
-		{
-				stuff.innerHTML = stuff.innerHTML + "<br style='clear:both'>";
-				
-				i=1;
-		}
+		
 		var image = value.imageUrlsBySize[90];
 		
 		var title = "<span class='title'>"+value.recipeName+"</span>"
 		$("#stuff").hide();
-		stuff.innerHTML = stuff.innerHTML + "<div class='recipe'>"+title+"<a href='http://www.yummly.com/recipe/"+ value.id + "'><img src='"+ image + "' /></a></div>";
+		stuff.innerHTML = stuff.innerHTML + "<div class='recipe'><p>"+title+"</p><a href='http://www.yummly.com/recipe/"+ value.id + "'><img src='"+ image + "' /></a></div>";
 		$("#stuff").fadeIn();
-		i++;
+		
 	})
 	}
 }

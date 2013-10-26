@@ -4,20 +4,29 @@
 }
 
 .recipe{
-	border: 2px solid #000;
+	padding: 0px;
+	margin: 0px;
 	display: inline-block;
-	width: 120px;
+	width: 50%;
+}
+.recipe p{
+	margin: 0px;
 }
 .recipe img {
-	width: 120px;
+	width: 100%;
 }
-.title {
-	opacity: 0.6;
-	background: #000;
-	display: block;
-	font-size: 0.7em;
-	color: #000;
+.title{
 	position: absolute;
 	z-index: 1;
-	width: 120px;
+	width:48.5%;
+	color: #D1D0CE;
+	font-size: 0.9em;
+	text-shadow: 1px 1px 2px black;
+	
+	
+	
+	
+}
+.ui-content{
+	padding: 0px;
 }
