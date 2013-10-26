@@ -13,24 +13,46 @@
   
   <link rel="stylesheet" href="CSS/jquery.mobile-1.3.1.min.css">
   <link rel="stylesheet" href="CSS/style.css">
-  
+  <link rel="stylesheet" href="../_assets/css/jqm-docs.css"/>
 
-  
+ 
   <!-- jQuery and jQuery Mobile -->
   <script src="JS/jquery.mobile-1.3.1.min.js"></script>
   <script src="JS/mastercook.js"></script>
 
   <!-- Extra Codiqa features -->
   <script src="JS/codiqa.ext.js"></script>
+  
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Food', 'Types'],
+          ['Salty',     11],
+          ['Sweet',      2],
+          ['Vegan',  2],
+          ['Meaty', 2],
+          
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
    
 </head>
 <body>
 <!-- Home -->
 <div data-role="page" id="recipes">
     <div data-theme="a" data-role="header" data-position="fixed">
-		<a data-role="button" href="#page1" data-icon="edit" data-iconpos="left" class="ui-btn-right">
-            Diary
-        </a>
+	  <a data-role="button" href="#Profile" data-icon="edit" data-iconpos="left" class=
+      "ui-btn-right">Diary</a>
         <h1>
             Master Cook
         </h1>
@@ -50,6 +72,29 @@
     </div>
     
 </div>
+  <div data-role="page" id="Profile">
+    <div data-role="header">
+      <h1>User Profile</h1>
+	  <p><a data-theme="a" href="#recipes" data-role="button" data-icon="arrow-1" data-iconpos="left" class=
+      "ui-btn-left">Main Menu</a></p>
+
+    </div><!-- /header -->
+
+    <div data-role="content">
+      <div id="piechart" style="width: 40%; height: 35%;"></div>
+		<div id="dates" >
+			<div id="Monday"> <p>Monday<p> </div>
+			 
+			<div id="Tuesday"><p>Tuesday<p></div>
+			<div id="Wednesday"><p>Wednesday<p></div>
+			<div id="Thurday"><p>Thursday<p></div>
+			<div id="Friday"><p>Friday Friday<p></div>
+			<div id="Saturday"><p>Saturday<p></div>
+			<div id="Sunday"><p>Sunday<p></div>
+			
+		</div>
+    </div>
+ </div>
 
 
 <div id="one">
