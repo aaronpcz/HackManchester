@@ -12,6 +12,10 @@ function rec3(data){
 			data:
 			{
 				q:data,
+				requiresPictures: true,
+				maxResult: "12",
+				start: "0",
+				
 			},
 			success: function(response){ console.log(response); },
 		});
@@ -28,14 +32,21 @@ function rec2(data) {
 	}
 	else
 	{
+	var i = 1;
 	$.each( data.matches, function(key, value){
-	
-		//var image = value.smallImageUrls[0];
+		if(i > 3)
+		{
+				stuff.innerHTML = stuff.innerHTML + "<br style='clear:both'>";
+				
+				i=1;
+		}
 		var image = value.imageUrlsBySize[90];
 		
+		var title = "<span class='title'>"+value.recipeName+"</span>"
 		$("#stuff").hide();
-		stuff.innerHTML = stuff.innerHTML + "<a href='http://www.yummly.com/recipe/"+ value.id + "'><img src='"+ image + "' /></a>";
+		stuff.innerHTML = stuff.innerHTML + "<div class='recipe'>"+title+"<a href='http://www.yummly.com/recipe/"+ value.id + "'><img src='"+ image + "' /></a></div>";
 		$("#stuff").fadeIn();
+		i++;
 	})
 	}
 }

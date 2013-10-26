@@ -1,3 +1,23 @@
 .search{
 	margin-top: 10%;
+
+}
+
+.recipe{
+	border: 2px solid #000;
+	display: inline-block;
+	width: 120px;
+}
+.recipe img {
+	width: 120px;
+}
+.title {
+	opacity: 0.6;
+	background: #000;
+	display: block;
+	font-size: 0.7em;
+	color: #000;
+	position: absolute;
+	z-index: 1;
+	width: 120px;
 }
