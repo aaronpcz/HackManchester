@@ -1,23 +1,78 @@
 .search{
-	margin-top: 10%;
+	
 
+}
+.search input{
+	width: 100%;
+	display: block;
+	
+	
+}
+.search h3, .seach input{
+
+	display: block;
+	margin: auto 0;
 }
 
 .recipe{
-	border: 2px solid #000;
+	padding: 0px;
+	margin: 0px;
 	display: inline-block;
-	width: 120px;
+	width: 50%;
+}
+.recipe p{
+	margin: 0px;
 }
 .recipe img {
-	width: 120px;
+	width: 100%;
 }
-.title {
-	opacity: 0.6;
-	background: #000;
-	display: block;
-	font-size: 0.7em;
-	color: #000;
+.title{
 	position: absolute;
 	z-index: 1;
-	width: 120px;
+	width:48.5%;
+	color: #D1D0CE;
+	font-size: 0.9em;
+	text-shadow: 1px 1px 2px black;
+}
+.ui-content{
+	padding: 0px;
+}
+#stuff {
+	margin-top: 50px;
+}
+
+.effects{
+border-style:solid;
+border-color:#000;
+background-color:#CCC;
+float:none;
+}
+.dates{
+
+}
+
+.days{
+border-style:solid;
+border-color:#111;
+border-top:0.5px;
+
+background-color:#DDD;
+float:left;
+margin:auto;
+width:auto;
+}
+.calories{
+
+background-color:#BFB;
+float:none;
+margin:auto;
+}
+.boolean{
+border-left:0px;
+border-right:0px;
+border-style:solid;
+border-color:#000;
+background-color:#FFF;
+float:none;
+margin:auto;
 }
