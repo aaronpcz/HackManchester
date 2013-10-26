@@ -6,6 +6,7 @@
 	width: 100%;
 	display: block;
 	
+	
 }
 .search h3, .seach input{
 
@@ -36,10 +37,9 @@
 .ui-content{
 	padding: 0px;
 }
-<<<<<<< HEAD
 #stuff {
 	margin-top: 50px;
-=======
+}
 
 .effects{
 border-style:solid;
@@ -75,5 +75,4 @@ border-color:#000;
 background-color:#FFF;
 float:none;
 margin:auto;
->>>>>>> 6c285b53949efe0d95c0e25353a1cae8f48a8892
 }
