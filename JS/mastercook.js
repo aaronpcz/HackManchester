@@ -1,5 +1,5 @@
 function rec3(data){	
-		var url = "http://www.recipepuppy.com/api/";
+		var url = "http://api.yummly.com/v1/api/recipes?_app_id=7b053b82&_app_key=a2b4713bdb0b9b132a16a104823ed74c";
 
 			$.ajax({
 			type: 'GET',
@@ -11,21 +11,10 @@ function rec3(data){
 			dataType: 'jsonp',
 			data:
 			{
-				i:data,
+				q:data,
 			},
 			success: function(response){ console.log(response); },
 		});
-}
-
-function rec(data) {
-		var url = "http://www.recipepuppy.com/api/";
-		
-		var script = document.getElementById("a");
-		var newUrl = url+"?i="+data+"&callback=rec2";
-		script.src=newUrl;
-		console.log(script.src);
-		
-	
 }
 
 function rec2(data) {
@@ -33,15 +22,19 @@ function rec2(data) {
 	var stuff = document.getElementById("stuff");
 	stuff.innerHTML = "";
 	
-	if(data.results.length == 0)
+	if(data.matches.length == 0)
 	{
 		stuff.innerHTML = "No results...";
 	}
 	else
 	{
-	$.each( data.results, function(key, value){
+	$.each( data.matches, function(key, value){
+	
+		//var image = value.smallImageUrls[0];
+		var image = value.imageUrlsBySize[90];
+		
 		$("#stuff").hide();
-		stuff.innerHTML = stuff.innerHTML + ("<a href='"+value.href+"'><img src='"+value.thumbnail+"' /></a>");
+		stuff.innerHTML = stuff.innerHTML + "<a href='http://www.yummly.com/recipe/"+ value.id + "'><img src='"+ image + "' /></a>";
 		$("#stuff").fadeIn();
 	})
 	}
