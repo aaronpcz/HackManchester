@@ -1,6 +1,16 @@
 .search{
-	margin-top: 10%;
+	
 
+}
+.search input{
+	width: 100%;
+	display: block;
+	
+}
+.search h3, .seach input{
+
+	display: block;
+	margin: auto 0;
 }
 
 .recipe{
@@ -29,4 +39,7 @@
 }
 .ui-content{
 	padding: 0px;
+}
+#stuff {
+	margin-top: 50px;
 }
