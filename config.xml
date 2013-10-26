@@ -1,0 +1,13 @@
+<widget id="com.hackmanchester.mastercook" version="0.0.1">
+        <name>Master Cook</name>
+        <description>
+            A Simple recipe search Application :)
+        </description>
+        <author email="Corinthius@live.co.uk" href="#">
+            Corrie MacDonald : Aaron Phillips : K : Angel
+        </author>
+        <content src="index.html" />
+        <access origin="*" />
+        <preference name="Fullscreen" value="true" />
+        <preference name="WebViewBounce" value="true" />
+</widget>
