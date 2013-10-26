@@ -1,0 +1,13 @@
+<widget id="com.corrie.hello" version="0.0.1">
+        <name>HelloWorld</name>
+        <description>
+            A Simple Hello World Application :)
+        </description>
+        <author email="Corinthius@live.co.uk" href="#">
+            Corrie MacDonald
+        </author>
+        <content src="index.html" />
+        <access origin="*" />
+        <preference name="Fullscreen" value="true" />
+        <preference name="WebViewBounce" value="true" />
+    </widget>
