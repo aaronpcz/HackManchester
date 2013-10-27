@@ -1,5 +1,5 @@
 function rec3(data){	
-		var url = "http://api.yummly.com/v1/api/recipes?_app_id=7b053b82&_app_key=a2b4713bdb0b9b132a16a104823ed74c";
+		var url = "http://api.yummly.com/v1/api/recipes?_app_id=e1287ca0&_app_key=25007aad54be3386740d469c49929d83";
 
 			$.ajax({
 			type: 'GET',
@@ -66,7 +66,8 @@ function saveFavourite(recipeId)
 
 function retrieveFavourite(recipeId)
 {
-			var url = "http://api.yummly.com/v1/api/recipes?_app_id=7b053b82&_app_key=a2b4713bdb0b9b132a16a104823ed74c";
+			
+			var url = "http://api.yummly.com/v1/api/recipes?_app_id=e1287ca0&_app_key=25007aad54be3386740d469c49929d83";
 
 			$.ajax({
 			type: 'GET',
@@ -90,18 +91,13 @@ function rec4(recipeId, data) {
 	}
 	else
 	{
-		$.each( data.matches, function(key, value){
-			if(value.id == recipeId)
-			{
-				return value;
-			}
-		})
+		return data.matches[0];
 	}
 }
 
 function retrieveFavouriteForCalculating(recipeId)
 {
-			var url = "http://api.yummly.com/v1/api/recipes?_app_id=7b053b82&_app_key=a2b4713bdb0b9b132a16a104823ed74c";
+			var url = "http://api.yummly.com/v1/api/recipes?_app_id=e1287ca0&_app_key=25007aad54be3386740d469c49929d83";
 
 			$.ajax({
 			type: 'GET',
