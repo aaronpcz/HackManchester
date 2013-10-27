@@ -23,28 +23,8 @@
   <!-- Extra Codiqa features -->
   <script src="JS/codiqa.ext.js"></script>
   
-   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Food', 'Types'],
-          ['Salty',     11],
-          ['Sweet',      2],
-          ['Vegan',  2],
-          ['Meaty', 2],
-          
-        ]);
-
-        var options = {
-          title: 'My Daily Activities'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
-    </script>
+   <script type="text/javascript" src="JS/google.js"></script>
+    <script type="text/javascript" src="JS/chart.js"></script>
    
 </head>
 <body>
@@ -72,100 +52,98 @@
     </div>
     
 </div>
+
+<!--- Profile Page Begin ---->
  <div data-role="page" id="Profile">
+	<!--- Header Begin ---->
     <div data-role="header">
-      <h1>User Profile</h1>
-	  <p><a data-theme="a" href="#recipes" data-role="button" data-icon="arrow-1" data-iconpos="left" class=
-      "ui-btn-left">Main Menu</a></p>
+      <h1>Food Diary</h1>
+		<p>
+			<a data-theme="a" href="#recipes" data-role="button" data-icon="arrow-1" data-iconpos="left" class="ui-btn-left">Main Menu</a>
+		</p>
 
-    </div><!-- /header -->
+    </div>
+	<!-- End of header -->
 
-    <div data-role="content">
-      <div id="piechart" style="width: 40%; height: 35%;"></div>
+	<!--- Content Begin --->
+    <div id="coc" data-role="content">
+      <div id="piechart" ></div>
 		
+		<!--- Date Heading --->
 		<div id="dates" >
-			<div class="days"> 
+			<div class="days green"> 
 				<div class="name">
-					<p>Monday<p>
+					<p>Mon<p>
 				</div>
 					<div class="boolean" >
-						<p>True</p>
+						<p id="mon">True</p>
 					</div>
-				<div class="calories">
-					<p>calories</p>
-				</div>
+				
 			</div>
-			<div class="days"> 
+			<div class="days darkGreen"> 
 				<div class="name">
-					<p>Tuesday<p>
+					<p>Tue<p>
 				</div>
 					<div class="boolean" >
-						<p>True</p>
+						<p id="tue">True</p>
 					</div>
-				<div class="calories">
-					<p>calories</p>
-				</div>
+				
 			</div>
-			<div class="days"> 
+			<div class="days green"> 
 				<div class="name">
-					<p>Wednesday<p>
+					<p>Wed<p>
 				</div>
 					<div class="boolean" >
-						<p>True</p>
+						<p id="wed">True</p>
 					</div>
-				<div class="calories">
-					<p>calories</p>
-				</div>
+				
 			</div>
-			<div class="days"> 
+			<div class="days darkGreen"> 
 				<div class="name">
-					<p>Thursday<p>
+					<p>Thu<p>
 				</div>
 					<div class="boolean" >
-						<p>True</p>
+						<p id="thu">True</p>
 					</div>
-				<div class="calories">
-					<p>calories</p>
-				</div>
+				
 			</div>
-			<div class="days"> 
+			<div class="days green"> 
 				<div class="name">
-					<p>Friday Friday<p>
+					<p>Fri<p>
 				</div>
 					<div class="boolean" >
-						<p>True</p>
+						<p id="fri">True</p>
 					</div>
-				<div class="calories">
-					<p>calories</p>
-				</div>
+				
 			</div>
-		<div class="days"> 
+		<div class="days darkGreen"> 
 				<div class="name">
-					<p>Saturday<p>
+					<p>Sat<p>
 				</div>
 					<div class="boolean" >
-						<p>True</p>
+						<p id="sat">True</p>
 					</div>
-				<div class="calories">
-					<p>calories</p>
-				</div>
+				
 			</div>
-		<div class="days"> 
+		<div class="days green"> 
 				<div class="name">
-					<p>Sunday<p>
+					<p>Sun<p>
 				</div>
 					<div class="boolean" >
-						<p>True</p>
+						<p id="sun">True</p>
 					</div>
-				<div class="calories">
-					<p>calories</p>
-				</div>
+				
 			</div>		
 	</div>
-			<div class="CalorieBar">
 			
-			</div>
-			<div class="Fav">
+			<div id="Fav">
+				<h4>...My favourite recipe</h4>
+				<div id="favTitle"></div>
+				<div id="favImage">
+				</div>
+				
+			
+			
 			</div>
 	</div>
 </div>

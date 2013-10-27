@@ -47,26 +47,29 @@ border-color:#000;
 background-color:#CCC;
 float:none;
 }
-.dates{
-
+#dates{
+	width: 100%;
+	float: left;
+	background: #000;
 }
 
 .days{
-border-style:solid;
-border-color:#111;
-border-top:0.5px;
+	text-align: center;
+	font-size: 1em;
+	color: #FFF;
 
-background-color:#DDD;
+
 float:left;
 margin:auto;
-width:auto;
+width:14.22%;
 }
-.calories{
+.green{
+	background: #009900;
+}
+.darkGreen{
+	background: #006600;
+}
 
-background-color:#BFB;
-float:none;
-margin:auto;
-}
 .boolean{
 border-left:0px;
 border-right:0px;
@@ -75,4 +78,15 @@ border-color:#000;
 background-color:#FFF;
 float:none;
 margin:auto;
+color: #000;
+}
+#Fav{
+	
+}
+#Fav h4{
+	text-align: right;
+	
+}
+#coc{
+	background: #FFF;
 }
