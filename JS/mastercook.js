@@ -51,6 +51,7 @@ function saveFavourite(recipeId)
 	if(window.localStorage.getItem(recipeId) == null)
 	{
 		window.localStorage.setItem(recipeId, "1");
+		window.localStorage.setItem("count", ((parseInt(window.localStorage.getItem("count"))) +1).toString());
 	}
 	else
 	{
@@ -58,7 +59,10 @@ function saveFavourite(recipeId)
 		count = parseInt(count);
 		count += 1;
 		window.localStorage.setItem(recipeId, count.toString());
+		window.localStorage.setItem("count", (parseInt(window.localStorage.getItem("count")) +1));
 	}
+	
+	retrieveFavouriteForCalculating(recipeId);
 }
 
 function retrieveFavourite(recipeId)
@@ -125,10 +129,6 @@ function gettingRecipeObject(recipeId, data) {
 		$.each( data.matches, function(key, value){
 			if(value.id == recipeId)
 			{
-				var calc = parseInt(window.localStorage.getItem("count"));
-				calc = calc + 1;
-				window.localStorage.setItem("count", calc.toString());
-				
 				setupFlavour("bitter", value.flavors.bitter);
 				setupFlavour("meaty", value.flavors.meaty);
 				setupFlavour("salty", value.flavors.salty);
@@ -166,7 +166,6 @@ function setupFlavour(flavour, value)
 	{
 		var calc = parseFloat(window.localStorage.getItem("bitter"));
 		calc = calc + value;
-		console.log(calc);
 		window.localStorage.setItem("bitter", calc);
 	}
 	
