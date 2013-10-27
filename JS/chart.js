@@ -3,11 +3,11 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Food', 'Types'],
-          ['Salty', parseFloat(window.localStorage.getItem("salty"))],
-          ['Sweet', parseFloat(window.localStorage.getItem("sweet"))],
-          ['Sour',  parseFloat(window.localStorage.getItem("sour"))],
-          ['Meaty', parseFloat(window.localStorage.getItem("meaty"))],
-		  ['Bitter', parseFloat(window.localStorage.getItem("bitter"))],
+          ['Salty', parseFloat(window.localStorage.getItem("averageSalty"))],
+          ['Sweet', parseFloat(window.localStorage.getItem("averageSweet"))],
+          ['Sour',  parseFloat(window.localStorage.getItem("avaergaeSour"))],
+          ['Meaty', parseFloat(window.localStorage.getItem("averageMeaty"))],
+		  ['Bitter', parseFloat(window.localStorage.getItem("averageBitter"))],
 		  
           
         ]);
