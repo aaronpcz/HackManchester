@@ -90,7 +90,7 @@ function rec4(recipeId, data) {
 		$.each( data.matches, function(key, value){
 			if(value.id == recipeId)
 			{
-				console.log(value);
+				return value;
 			}
 		})
 	}
@@ -166,6 +166,7 @@ function setupFlavour(flavour, value)
 	{
 		var calc = parseFloat(window.localStorage.getItem("bitter"));
 		calc = calc + value;
+		console.log(calc);
 		window.localStorage.setItem("bitter", calc);
 	}
 	
