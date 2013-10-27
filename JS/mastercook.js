@@ -51,7 +51,6 @@ function saveFavourite(recipeId)
 	if(window.localStorage.getItem(recipeId) == null)
 	{
 		window.localStorage.setItem(recipeId, "1");
-		window.localStorage.setItem("count", ((parseInt(window.localStorage.getItem("count"))) +1).toString());
 	}
 	else
 	{
@@ -60,8 +59,8 @@ function saveFavourite(recipeId)
 		count += 1;
 		window.localStorage.setItem(recipeId, count.toString());
 		window.localStorage.setItem("count", (parseInt(window.localStorage.getItem("count")) +1));
+		
 	}
-	
 	retrieveFavouriteForCalculating(recipeId);
 }
 
@@ -115,7 +114,7 @@ function retrieveFavouriteForCalculating(recipeId)
 			{
 				q:recipeId,
 			},
-			success: function(response){ gettingRecipeObject(recipeId, response); },
+			success: function(response){ gettingRecipeObject(recipeId, response); }
 		});
 }
 
@@ -129,6 +128,8 @@ function gettingRecipeObject(recipeId, data) {
 		$.each( data.matches, function(key, value){
 			if(value.id == recipeId)
 			{
+				console.log(key);
+				console.log(value);
 				setupFlavour("bitter", value.flavors.bitter);
 				setupFlavour("meaty", value.flavors.meaty);
 				setupFlavour("salty", value.flavors.salty);
