@@ -33,7 +33,7 @@
 <div data-role="page" id="recipes">
     <div data-theme="a" data-role="header" data-position="fixed">
 	  <a data-role="button" href="#Profile" data-icon="edit" data-iconpos="left" class=
-      "ui-btn-right">Diary</a>
+      "ui-btn-right" onClick="loadDays()">Diary</a>
         <h1>
             Master Cook
         </h1>
@@ -45,7 +45,7 @@
                 Search for recipes by name, ingredient or culture!
             </h3>
 			
-            <input name="" id="searchingredient" placeholder="Ingredients..." value="" type="search" onChange="rec3(this.value)">
+            <input name="" id="searchingredient" placeholder="Ingredients..." value="" type="search" onChange="displaySearch(this.value)">
 			<div data-role="content" id="stuff">
 			
 			</div>
@@ -77,7 +77,7 @@
 					<p>Mon<p>
 				</div>
 					<div class="boolean" >
-						<p id="Mon"></p>
+						<div id="Mon"></div>
 					</div>
 				
 			</div>
@@ -86,7 +86,7 @@
 					<p>Tue<p>
 				</div>
 					<div class="boolean" >
-						<p id="Tue"></p>
+						<div id="Tue"></div>
 					</div>
 				
 			</div>
@@ -95,7 +95,7 @@
 					<p>Wed<p>
 				</div>
 					<div class="boolean" >
-						<p id="Wed"></p>
+						<div id="Wed"></div>
 					</div>
 				
 			</div>
@@ -104,7 +104,7 @@
 					<p>Thu<p>
 				</div>
 					<div class="boolean" >
-						<p id="Thu"></p>
+						<div id="Thu"></div>
 					</div>
 				
 			</div>
@@ -113,7 +113,7 @@
 					<p>Fri<p>
 				</div>
 					<div class="boolean" >
-						<p id="Fri"></p>
+						<div id="Fri"></div>
 					</div>
 				
 			</div>
@@ -122,7 +122,7 @@
 					<p>Sat<p>
 				</div>
 					<div class="boolean" >
-						<p id="Sat"></p>
+						<div id="Sat"></div>
 					</div>
 				
 			</div>
@@ -151,7 +151,7 @@
 
 
 <div id="one">
-<script id="a" src="http://api.yummly.com/v1/api/recipes?_app_id=e1287ca0&_app_key=25007aad54be3386740d469c49929d83&q=english&maxResult=12&start=5&callback=rec2"></script>
+<script id="a" src="http://api.yummly.com/v1/api/recipes?_app_id=083f169b&_app_key=c267473a2514311e7d6cb7280f813e7f&q=english&maxResult=12&start=5&callback=displaySearch"></script>
 </div>
 </body>
 </html>

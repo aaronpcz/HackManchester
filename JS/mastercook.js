@@ -1,147 +1,183 @@
-function rec3(data){	
-		var url = "http://api.yummly.com/v1/api/recipes?_app_id=e1287ca0&_app_key=25007aad54be3386740d469c49929d83";
+// Base API Call
+var url = "http://api.yummly.com/v1/api/recipes?_app_id=083f169b&_app_key=c267473a2514311e7d6cb7280f813e7f";
 
-			$.ajax({
+// Dynamically obtain an object through the recipe id.
+function getRecipeByID(id) {
+	var temp = new Object();
+	
+		$.ajax({
 			type: 'GET',
 			url: url,
 			async: false,
-			jsonpCallback: "rec2",
 			crossDomain: true,
 			contentType: "application/json",
 			dataType: 'jsonp',
 			data:
 			{
-				q:data,
+				q:id,
+				requiresPictures: true,
+				maxResult: "1",
+			},
+			success: function(data){ localStorage.setItem("temp", JSON.stringify(data));
+			}
+		});
+		return JSON.parse(localStorage.getItem("temp"));
+}
+
+// Search the API recipe database through a query
+function getRecipesBySearch(query) {
+	var masterObject = new Object();
+	
+			$.ajax({
+			type: 'GET',
+			url: url,
+			async: false,
+			crossDomain: true,
+			contentType: "application/json",
+			dataType: 'jsonp',
+			data:
+			{
+				q:query,
 				requiresPictures: true,
 				maxResult: "12",
 				start: "0",
 				
 			},
-			success: function(response){ console.log(response); },
+			success: function(data) { localStorage.setItem("temp", JSON.stringify(data)) }
 		});
+		return JSON.parse(localStorage.getItem("temp"));
 }
 
-function rec2(data) {
-	console.log(data);
-	var stuff = document.getElementById("stuff");
-	stuff.innerHTML = "";
+// Display search results
+function displaySearch(query) {
+	// Initialise the query
+	var data = getRecipesBySearch(query);
+	data = getRecipesBySearch(query);
+
+
+	// Grab the search results space element to display results
+	var searchSpace = document.getElementById("stuff");
+	// Clear the results area in case it's already in use
+	searchSpace.innerHTML = "";
 	
+	// Make a check to see if there are any actual results for the query
 	if(data.matches.length == 0)
 	{
-		stuff.innerHTML = "No results...";
+		// Display a simple error showing there's no results for that query
+		searchSpace.innerHTML = "No results... ";
 	}
 	else
 	{
-	
-	$.each( data.matches, function(key, value){
-		
-		var image = value.imageUrlsBySize[90];
-		
-		var title = "<span class='title'>"+value.recipeName+"</span>"
-		$("#stuff").hide();
-		stuff.innerHTML = stuff.innerHTML + "<div class='recipe'><p>"+title+"</p><a href='http://www.yummly.com/recipe/"+ value.id + "'><img src='"+ image + "' /></a></div>";
-		$("#stuff").fadeIn();
+		// Loop through the recipe objects that we have 
+		$.each( data.matches, function(key, value){
+			// Obtain the image to display
+			var image = value.imageUrlsBySize[90];
+			// Create a title element
+			var title = "<span class='title'>"+value.recipeName+"</span>";
+			// Hide the results in preperation for fadeIn
+			$("#stuff").hide();
+			// Create the results :)
+			searchSpace.innerHTML = searchSpace.innerHTML + "<div class='recipe'><p>"+title+"</p><div class='addmeal' value='"+value.id+"'  onClick=\"addMeal('"+value.id+"')\"> </div><a href='http://www.yummly.com/recipe/"+ value.id + "'><img src='"+ image + "' /></a></div>";
+			// Fade in :)
+			$("#stuff").fadeIn();
 		
 	})
 	}
 }
 
-function saveFavourite(recipeId)
-{
-	if(window.localStorage.getItem(recipeId) == null)
+// Add a recipe to your daily meal calander
+function addMeal(recipeID){
+	// Check if the localStorage contains an entry already and if not make one
+	if(localStorage.getItem(recipeID) == null)
 	{
-		window.localStorage.setItem(recipeId, "1");
+		// Set the chosen recipe to an initial value of one
+		localStorage.setItem(recipeID, "1");
 	}
 	else
 	{
-		var count = window.localStorage.getItem(recipeId);
-		count = parseInt(count);
-		count += 1;
-		window.localStorage.setItem(recipeId, count.toString());
-		window.localStorage.setItem("count", count.toString());
+		// Obtain the initial counter
+		var count = parseInt(localStorage.getItem(recipeID));
+		count++;
+		// Set the local recipe variable counter to a new value
+		localStorage.setItem(recipeID, count.toString());		
+	}
+	// Update Flavour values
+	var r = getRecipeByID(recipeID)
+	updateFlavours(r);
+	
+	// Get the current Day
+	var d = new Date();
+	var weekday=new Array(7);
+	weekday[0]="Sunday";
+	weekday[1]="Monday";
+	weekday[2]="Tuesday";
+	weekday[3]="Wednesday";
+	weekday[4]="Thursday";
+	weekday[5]="Friday";
+	weekday[6]="Saturday";
+	
+	// Check if the day contains current information
+	if(localStorage.getItem(weekday[d.getDay()]) == null)
+	{
+		// If the field is empty/null put it in
+		localStorage.setItem(weekday[d.getDay()], JSON.stringify(getRecipeByID(recipeID)));
+	}
+	
+}
+
+// Load and update the HTML of the calandar
+function loadDays() {
+	
+	var weekday=new Array(7);
+	weekday[0]="Sunday";
+	weekday[1]="Monday";
+	weekday[2]="Tuesday";
+	weekday[3]="Wednesday";
+	weekday[4]="Thursday";
+	weekday[5]="Friday";
+	weekday[6]="Saturday";
+	
+	for(var i=0;i<=6;i++) {
+	
+		var day = weekday[i];
+		day = day.substr(0,3);
 		
-	}
-	retrieveFavouriteForCalculating(recipeId);
-}
-
-function retrieveFavourite(recipeId)
-{
+		if(localStorage.getItem(weekday[i]) == null)
+		{
+			// do nothing ... 
+		}
+		else
+		{
+			var dayObj = JSON.parse(localStorage.getItem(weekday[i]));
+			var dayEl = document.getElementById(day);
 			
-			var url = "http://api.yummly.com/v1/api/recipes?_app_id=e1287ca0&_app_key=25007aad54be3386740d469c49929d83";
-
-			$.ajax({
-			type: 'GET',
-			url: url,
-			async: false,
-			crossDomain: true,
-			contentType: "application/json",
-			dataType: 'jsonp',
-			data:
-			{
-				q:recipeId,
-			},
-			success: function(response){ rec4(recipeId, response); },
-		});
-}
-
-function rec4(recipeId, data) {
-	if(data.matches.length == 0)
-	{
-		stuff.innerHTML = "No results...";
-	}
-	else
-	{
-		return data.matches[0];
+		dayEl.innerHTML = "<img src='"+dayObj.imageUrlsBySize[90]+"'/>";		
+		}
 	}
 }
 
-function retrieveFavouriteForCalculating(recipeId)
-{
-			var url = "http://api.yummly.com/v1/api/recipes?_app_id=e1287ca0&_app_key=25007aad54be3386740d469c49929d83";
 
-			$.ajax({
-			type: 'GET',
-			url: url,
-			async: false,
-			crossDomain: true,
-			contentType: "application/json",
-			dataType: 'jsonp',
-			data:
-			{
-				q:recipeId,
-			},
-			success: function(response){ gettingRecipeObject(recipeId, response); }
-		});
+// Update Flavour Values
+function updateFlavours(recipeObject){
+	var r = recipeObject;
+	
+	// Update Sweet
+	localStorage.setItem("sweet",(parseFloat(localStorage.getItem("sweet") + r.flavors.sweet)));
+	// Update Salty
+	localStorage.setItem("salty",(parseFloat(localStorage.getItem("salty") + r.flavors.salty)));
+	// Update bitter
+	localStorage.setItem("bitter",(parseFloat(localStorage.getItem("bitter") + r.flavors.bitter)));
+	// Update Sour
+	localStorage.setItem("sour",(parseFloat(localStorage.getItem("sour") + r.flavors.sour)));
+	// Update Meaty
+	localStorage.setItem("meaty",(parseFloat(localStorage.getItem("meaty") + r.flavors.meaty)));
 }
 
-function gettingRecipeObject(recipeId, data) {
-	if(data.matches.length == 0)
-	{
-		stuff.innerHTML = "No results...";
-	}
-	else
-	{
-		$.each( data.matches, function(key, value){
-			if(value.id == recipeId)
-			{
-				setupFlavour("bitter", value.flavors.bitter);
-				setupFlavour("meaty", value.flavors.meaty);
-				setupFlavour("salty", value.flavors.salty);
-				setupFlavour("sour", value.flavors.sour);
-				setupFlavour("sweet", value.flavors.sweet);
-			}
-		})
-	}
-}
-
-function initialCount()
-{
-	window.localStorage.setItem("count", "0");
-}
 
 function updateAverageFlavors()
 {
-	var count = parseFloat(window.localStorage.getItem("count"));
+	// It GETS THE JOB DONE! >:D
+	var count = parseFloat(localStorage.getItem("count"));
 
 	if(window.localStorage.getItem("averageBitter") == null)
 	{
