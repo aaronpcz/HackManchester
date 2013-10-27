@@ -125,6 +125,10 @@ function gettingRecipeObject(recipeId, data) {
 		$.each( data.matches, function(key, value){
 			if(value.id == recipeId)
 			{
+				var calc = parseInt(window.localStorage.getItem("count"));
+				calc = calc + 1;
+				window.localStorage.setItem("count", calc.toString());
+				
 				setupFlavour("bitter", value.flavors.bitter);
 				setupFlavour("meaty", value.flavors.meaty);
 				setupFlavour("salty", value.flavors.salty);
@@ -135,8 +139,13 @@ function gettingRecipeObject(recipeId, data) {
 	}
 }
 
-function setupFlavour(flavour, value)
+function initialCount()
 {
+	window.localStorage.setItem("count", "0");
+}
+
+function setupFlavour(flavour, value)
+{	
 	//
 	if(window.localStorage.getItem("bitter") == null)
 	{
