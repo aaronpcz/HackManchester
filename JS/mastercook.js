@@ -144,6 +144,17 @@ function initialCount()
 	window.localStorage.setItem("count", "0");
 }
 
+function updateAverageFlavors()
+{
+	var count = parseFloat(window.localStorage.getItem("count"));
+	
+	window.localStorage.setItem("bitter", (parseFloat(window.localStorage.getItem("bitter")) / count).toString());
+	window.localStorage.setItem("meaty", (parseFloat(window.localStorage.getItem("meaty")) / count).toString());
+	window.localStorage.setItem("salty", (parseFloat(window.localStorage.getItem("salty")) / count).toString());
+	window.localStorage.setItem("sour", (parseFloat(window.localStorage.getItem("sour")) / count).toString());
+	window.localStorage.setItem("sweet", (parseFloat(window.localStorage.getItem("sweet")) / count).toString());
+}
+
 function setupFlavour(flavour, value)
 {	
 	//
