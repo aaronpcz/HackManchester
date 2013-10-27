@@ -58,7 +58,7 @@ function saveFavourite(recipeId)
 		count = parseInt(count);
 		count += 1;
 		window.localStorage.setItem(recipeId, count.toString());
-		window.localStorage.setItem("count", (parseInt(window.localStorage.getItem("count")) +1));
+		window.localStorage.setItem("count", count.toString());
 		
 	}
 	retrieveFavouriteForCalculating(recipeId);
@@ -128,8 +128,6 @@ function gettingRecipeObject(recipeId, data) {
 		$.each( data.matches, function(key, value){
 			if(value.id == recipeId)
 			{
-				console.log(key);
-				console.log(value);
 				setupFlavour("bitter", value.flavors.bitter);
 				setupFlavour("meaty", value.flavors.meaty);
 				setupFlavour("salty", value.flavors.salty);
@@ -148,12 +146,32 @@ function initialCount()
 function updateAverageFlavors()
 {
 	var count = parseFloat(window.localStorage.getItem("count"));
-	
-	window.localStorage.setItem("bitter", (parseFloat(window.localStorage.getItem("bitter")) / count).toString());
-	window.localStorage.setItem("meaty", (parseFloat(window.localStorage.getItem("meaty")) / count).toString());
-	window.localStorage.setItem("salty", (parseFloat(window.localStorage.getItem("salty")) / count).toString());
-	window.localStorage.setItem("sour", (parseFloat(window.localStorage.getItem("sour")) / count).toString());
-	window.localStorage.setItem("sweet", (parseFloat(window.localStorage.getItem("sweet")) / count).toString());
+
+	if(window.localStorage.getItem("averageBitter") == null)
+	{
+		window.localStorage.setItem("averageBitter", "0");
+	}
+	window.localStorage.setItem("averageBitter", ((parseFloat(window.localStorage.getItem("bitter"))) / count).toString());
+	if(window.localStorage.getItem("averageMeaty") == null)
+	{
+		window.localStorage.setItem("averageMeaty", "0");
+	}
+	window.localStorage.setItem("averageMeaty", ((parseFloat(window.localStorage.getItem("meaty"))) / count).toString());
+	if(window.localStorage.getItem("averageSalty") == null)
+	{
+		window.localStorage.setItem("averageSalty", "0");
+	}
+	window.localStorage.setItem("averageSalty", ((parseFloat(window.localStorage.getItem("salty"))) / count).toString());
+	if(window.localStorage.getItem("averageSour") == null)
+	{
+		window.localStorage.setItem("averageSour", "0");
+	}
+	window.localStorage.setItem("averageSour", ((parseFloat(window.localStorage.getItem("sour"))) / count).toString());
+	if(window.localStorage.getItem("averageSweet") == null)
+	{
+		window.localStorage.setItem("averageSweet", "0");
+	}
+	window.localStorage.setItem("averageSweet", ((parseFloat(window.localStorage.getItem("sweet"))) / count).toString());
 }
 
 function setupFlavour(flavour, value)
